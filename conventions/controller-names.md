@@ -47,22 +47,38 @@ Source: [`ModelMakeCommand::createController()` in laravel/framework](https://gi
 
 ## Verdict
 
-<!-- Osmell writes this section: which one he uses, and when he would break it. -->
+I use the plural: `PhotosController`. That is a departure from the Laravel way, and I make it on purpose.
+
+A model is one row, so it is singular and `$user->name` reads right. A controller is not a row. It answers for the resource, and everywhere else Laravel names the resource in the plural: the table is `photos`, the URI is `/photos`, the route names are `photos.index` and `photos.destroy`. I read the singular controller as the model's naming rule carried over to a class that is not a model. The generator does exactly that: it takes the model name and appends `Controller`.
+
+Rails made the same call. Its guide says "Rails favors making the resource in the controller's name plural."
+
+Source: [Action Controller Overview, Rails Guides](https://guides.rubyonrails.org/action_controller_overview.html)
+
+The departure has a cost:
+
+- `make:model Photo --controller` and `make:model Photo --all` create `PhotoController`. I generate the controller on its own instead.
+- Boost tells agents to write the singular. The same table says to "preserve an established project convention", so the project's rules have to state the plural or the agent will not know.
+
+I keep the singular when there is no collection: a singleton resource such as `ProfileController`, and single-action controllers.
+
+In a codebase that already uses singular names I leave them alone. A rename buys nothing.
 
 ## Example
 
 ```bash
-php artisan make:model Photo --controller --resource
+php artisan make:model Photo --migration
+php artisan make:controller PhotosController --model=Photo --resource
 ```
 
 ```php
 // routes/web.php
-use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PhotosController;
 
-Route::resource('photos', PhotoController::class);
+Route::resource('photos', PhotosController::class);
 ```
 
-The URI is plural, the model is singular, and the controller follows the model.
+The table, the URI and the controller are plural. The model is singular.
 
 ---
 

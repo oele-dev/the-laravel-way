@@ -15,7 +15,7 @@ Laravel Boost and Spatie's guidelines are both good, and they contradict each ot
 
 Every claim links to the file it came from, pinned to a commit, so you can check it and see when it goes stale.
 
-Each page then gives a verdict, which is my opinion, and says when I would break the rule.
+The framework's answer is the Laravel way. Each page then gives my verdict, which can depart from it. When it does, the page says why and what it costs.
 
 ## Conventions
 
