@@ -20,6 +20,9 @@ The framework's answer is the Laravel way. Each page then gives my verdict, whic
 ## Conventions
 
 - [Controller names: singular or plural](conventions/controller-names.md)
+- [Route names: snake_case, camelCase or kebab-case](conventions/route-names.md)
+- [View file names: kebab-case or camelCase](conventions/view-file-names.md)
+- [Config file names: snake_case or kebab-case](conventions/config-file-names.md)
 
 ## About
 
